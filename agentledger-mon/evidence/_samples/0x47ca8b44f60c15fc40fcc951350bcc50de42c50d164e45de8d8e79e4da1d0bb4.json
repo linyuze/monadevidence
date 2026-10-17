@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "agentledger.mon-payment-bundle.v1",
+  "source": "watch",
+  "complete": false,
+  "anchored": false,
+  "note": "read-only import: evidence built from chain data, not anchored on chain",
+  "network": "eip155:10143",
+  "taskId": "0x47ca8b44f60c15fc40fcc951350bcc50de42c50d164e45de8d8e79e4da1d0bb4",
+  "transfer": {
+    "from": "0x4737ec466661039bd1df71c7dcfbf513a462c703",
+    "to": "0xad954c1aec2e263ccef90476a2ed40c2d580aa07",
+    "valueAtomic": "10",
+    "valueMon": "0.00000000000000001",
+    "transactionHash": "0x6319c2cd0e0f187b41d1af66b05f240d0064b55030af37391ed8e2dda87e94b4",
+    "blockNumber": "71777531"
+  },
+  "evidence": {
+    "asset": "MON",
+    "blockHash": "0x72d35064e7595a42c061bf647a9751774e5e265619c8d6fd9508c9260401ca43",
+    "blockNumber": "71777531",
+    "effectiveGasPriceWei": "100000000000",
+    "feeWei": "2100000000000000",
+    "from": "0x4737ec466661039bd1df71c7dcfbf513a462c703",
+    "gasUsed": "21000",
+    "network": "eip155:10143",
+    "nonce": "429999",
+    "observedAt": "2026-10-17T08:48:18.000Z",
+    "schemaVersion": "agentledger.mon-payment.v1",
+    "settlementRef": "0xf0ce81dd415557d2b4edfade9da4549567cf5b85a72ad2720cd9c68042807f45",
+    "status": "success",
+    "taskId": "0x47ca8b44f60c15fc40fcc951350bcc50de42c50d164e45de8d8e79e4da1d0bb4",
+    "to": "0xad954c1aec2e263ccef90476a2ed40c2d580aa07",
+    "transactionHash": "0x6319c2cd0e0f187b41d1af66b05f240d0064b55030af37391ed8e2dda87e94b4",
+    "valueAtomic": "10",
+    "valueMon": "0.00000000000000001"
+  },
+  "evidenceCanonical": "{\"asset\":\"MON\",\"blockHash\":\"0x72d35064e7595a42c061bf647a9751774e5e265619c8d6fd9508c9260401ca43\",\"blockNumber\":\"71777531\",\"effectiveGasPriceWei\":\"100000000000\",\"feeWei\":\"2100000000000000\",\"from\":\"0x4737ec466661039bd1df71c7dcfbf513a462c703\",\"gasUsed\":\"21000\",\"network\":\"eip155:10143\",\"nonce\":\"429999\",\"observedAt\":\"2026-10-17T08:48:18.000Z\",\"schemaVersion\":\"agentledger.mon-payment.v1\",\"settlementRef\":\"0xf0ce81dd415557d2b4edfade9da4549567cf5b85a72ad2720cd9c68042807f45\",\"status\":\"success\",\"taskId\":\"0x47ca8b44f60c15fc40fcc951350bcc50de42c50d164e45de8d8e79e4da1d0bb4\",\"to\":\"0xad954c1aec2e263ccef90476a2ed40c2d580aa07\",\"transactionHash\":\"0x6319c2cd0e0f187b41d1af66b05f240d0064b55030af37391ed8e2dda87e94b4\",\"valueAtomic\":\"10\",\"valueMon\":\"0.00000000000000001\"}",
+  "evidenceHash": "0x241146b20113952a99ce84e77b669b2dedbd8d45b579f5c9ce78e54b7f60f062",
+  "settlementRef": "0xf0ce81dd415557d2b4edfade9da4549567cf5b85a72ad2720cd9c68042807f45"
+}

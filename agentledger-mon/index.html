@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgentLedger · MON 真实支付</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <h1>AgentLedger · MON 真实支付</h1>
+  <p class="sub">两个账户互转 1 MON → 生成支付证据 → 锚定上链。链上读写由 Windows 的 MetaMask 完成，本机只提供页面与证据留存。</p>
+</header>
+
+<main>
+  <section class="card">
+    <h2><span class="n">0</span>环境自检</h2>
+    <div class="row">
+      <button id="btn-connect">连接 MetaMask（账户 A）</button>
+      <button id="btn-switch" class="ghost">添加 / 切换 Monad 测试网</button>
+      <button id="btn-precheck" class="ghost">只读自检（不签名）</button>
+    </div>
+    <dl class="kv">
+      <dt>钱包</dt><dd id="mm-state">未连接</dd>
+      <dt>网络</dt><dd id="net-state">—</dd>
+      <dt>账户 A（付款方）</dt><dd id="acct-a" class="mono">—</dd>
+      <dt>A 的余额</dt><dd id="bal-a">—</dd>
+      <dt>B 的余额</dt><dd id="bal-b">—</dd>
+    </dl>
+  </section>
+
+  <section class="card">
+    <h2><span class="n">1</span>合约</h2>
+    <div class="field">
+      <label for="contract">AgentLedger 合约地址</label>
+      <input id="contract" class="mono" placeholder="0x…（留空则先点下面的部署）">
+    </div>
+    <div class="row">
+      <button id="btn-deploy">部署新合约（recorder = 账户 A）</button>
+      <button id="btn-use-contract" class="ghost">使用这个地址</button>
+    </div>
+    <p class="hint">recorder 必须是账户 A，否则后面的 <code>recordPayment</code> 会 revert。合约只需部署一次。</p>
+  </section>
+
+  <section class="card">
+    <h2><span class="n">2</span>转账参数</h2>
+    <div class="grid2">
+      <div class="field">
+        <label for="payee">账户 B（收款方）</label>
+        <input id="payee" class="mono" value="0xD7237D15B7abdf44d091350665e6a87f853cf4D6">
+      </div>
+      <div class="field">
+        <label for="amount">金额（MON）</label>
+        <input id="amount" class="mono" value="1">
+      </div>
+    </div>
+    <div class="field">
+      <label for="description">任务说明（会哈希成 descriptionHash）</label>
+      <input id="description" value="MON 支付测试：1 MON">
+    </div>
+    <div class="field">
+      <label for="task-id">taskId（bytes32）</label>
+      <div class="row tight">
+        <input id="task-id" class="mono">
+        <button id="btn-new-task" class="ghost">随机生成</button>
+      </div>
+    </div>
+    <p class="hint">账户 A 与 B 必须是两个不同地址。金额同时作为链上 <code>maxBudget</code>，超出会被合约拒绝。</p>
+  </section>
+
+  <section class="card">
+    <h2><span class="n">3</span>一键执行</h2>
+    <div class="row">
+      <button id="btn-run" class="primary">一键执行：真实转账 + 证据上链</button>
+    </div>
+    <p class="hint">依次执行：自检 → 建任务 → 转账 → 等上链 → 核对余额增量 → 生成证据 → 记录付款 → 锚定哈希 → 读回 → 一致性核对。中间不需要你复制任何东西。</p>
+    <ol id="steps" class="steps"></ol>
+  </section>
+
+  <section class="card">
+    <h2><span class="n">4</span>支付证据</h2>
+    <div class="field">
+      <label>evidenceHash（上链锚定的值）</label>
+      <div id="evidence-hash" class="mono box">—</div>
+    </div>
+    <div class="field">
+      <label>规范字节（canonical JSON，SHA-256 的输入）</label>
+      <pre id="evidence-canonical" class="code">—</pre>
+    </div>
+    <div class="row">
+      <button id="btn-download" class="ghost">下载证据 JSON</button>
+      <button id="btn-save" class="ghost">保存到本机 evidence/</button>
+      <span id="save-state" class="muted"></span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2><span class="n">5</span>链上读回与核对</h2>
+    <div class="row">
+      <button id="btn-readback" class="ghost">重新读回链上状态</button>
+    </div>
+    <dl class="kv">
+      <dt>状态</dt><dd id="task-state">—</dd>
+      <dt>链上 payer</dt><dd id="task-payer" class="mono">—</dd>
+      <dt>链上金额</dt><dd id="task-amount">—</dd>
+      <dt>链上 settlementRef</dt><dd id="task-sref" class="mono">—</dd>
+      <dt>链上 evidenceHash</dt><dd id="task-ehash" class="mono">—</dd>
+    </dl>
+    <table id="checks" class="checks"></table>
+  </section>
+
+  <section class="card">
+    <h2><span class="n">6</span>日志</h2>
+    <pre id="log" class="log"></pre>
+  </section>
+</main>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>

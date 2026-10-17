@@ -1,0 +1,9 @@
+AgentLedger · MON payment panel
+  root : /home/pkulzz/monad/agentledger-mon
+  evid : /home/pkulzz/monad/agentledger-mon/evidence
+  bind : 0.0.0.0:8788
+
+Open in Chrome (Windows, where MetaMask lives):
+  http://localhost:8788/
+  http://127.0.0.1:8788/
+

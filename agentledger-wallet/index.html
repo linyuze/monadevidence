@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AgentLedger · MetaMask 面板</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header>
+  <h1>AgentLedger · MetaMask 面板</h1>
+  <p class="lede">用你 Windows Chrome 里的 MetaMask 直接签名，跑完 创建任务 → 记录付款证词 → 执行 → 锚定证据 → 读回。本页不持有私钥、不做 RPC 代理、不上传任何数据。</p>
+  <div class="badges">
+    <span class="badge">chainId 10143 · Monad Testnet</span>
+    <span class="badge">所有写操作由 MetaMask 签名</span>
+    <span class="badge warn">Paid ≠ 已验证付款</span>
+  </div>
+</header>
+
+<main>
+  <section class="card">
+    <h2>0 · 环境自检</h2>
+    <dl class="kv">
+      <dt>MetaMask</dt><dd id="mm-state" class="status">检测中…</dd>
+      <dt>当前账户</dt><dd id="mm-account" class="mono">—</dd>
+      <dt>网络</dt><dd id="mm-chain" class="mono">—</dd>
+      <dt>哈希后端</dt><dd id="sha-backend" class="mono">—</dd>
+      <dt>页面来源</dt><dd id="origin" class="mono">—</dd>
+    </dl>
+    <div class="row">
+      <button id="btn-connect">连接 MetaMask</button>
+      <button id="btn-switch" class="ghost">添加 / 切换 Monad 测试网</button>
+    </div>
+    <p class="hint">如果「MetaMask」显示未检测到：本页必须从 <code>http://localhost</code> 或 <code>http://127.0.0.1</code> 打开。用 <code>file://</code> 打开时 Chrome 不会注入钱包。</p>
+  </section>
+
+  <section class="card">
+    <h2>1 · 合约</h2>
+    <p class="hint">部署时把 <strong>paymentRecorder 设为当前账户</strong>，这样你一个钱包就能走完全流程。也可以填入已部署的合约地址。</p>
+    <label>合约地址
+      <input id="contract" placeholder="0x… 部署后会自动填入" autocomplete="off" spellcheck="false">
+    </label>
+    <div class="row">
+      <button id="btn-deploy">部署新合约（recorder = 当前账户）</button>
+      <button id="btn-use-contract" class="ghost">使用这个地址</button>
+    </div>
+    <p id="deploy-status" class="status"></p>
+    <dl class="kv">
+      <dt>paymentRecorder</dt><dd id="recorder" class="mono">—</dd>
+      <dt>权限检查</dt><dd id="recorder-match" class="warn">—</dd>
+    </dl>
+  </section>
+
+  <section class="card">
+    <h2>2 · 创建任务</h2>
+    <label>任务输入文本（它决定 descriptionHash）
+      <textarea id="input-text" rows="4" spellcheck="false">Monad local EVM acceptance: one deterministic tool call.</textarea>
+    </label>
+    <dl class="kv">
+      <dt>descriptionHash</dt><dd id="desc-hash" class="mono">—</dd>
+    </dl>
+    <label>taskId（bytes32）
+      <input id="task-id" class="mono" autocomplete="off" spellcheck="false">
+    </label>
+    <label>maxBudget（留空 = 不限制）
+      <input id="budget" placeholder="例如 1000" inputmode="numeric" autocomplete="off">
+    </label>
+    <div class="row">
+      <button id="btn-new-task" class="ghost">随机生成 taskId</button>
+      <button id="btn-create">创建任务（createTask）</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>3 · 记录付款（recorder 证词）</h2>
+    <p class="warnbox"><strong>这一步写的是「recorder 说付过了」，不是「链上验证过 USDC 收款」。</strong>只有第 6 步的独立核对通过，对外状态才可能升级。任何时候都不要因为不确定而重新付款。</p>
+    <label>payer 地址
+      <input id="payer" class="mono" placeholder="0x… 付款方" autocomplete="off" spellcheck="false">
+    </label>
+    <label>amount（原子单位，USDC 6 位小数）
+      <input id="amount" value="1000" inputmode="numeric" autocomplete="off">
+    </label>
+    <label>settlementRef（bytes32，全局唯一）
+      <input id="settlement-ref" class="mono" autocomplete="off" spellcheck="false">
+    </label>
+    <label class="check">
+      <input id="attest-check" type="checkbox">
+      我确认这是 recorder 证词，不是已验证付款
+    </label>
+    <div class="row">
+      <button id="btn-random-ref" class="ghost">随机生成 settlementRef</button>
+      <button id="btn-record" disabled>记录付款（recordPayment）</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>4 · 执行 + Evidence</h2>
+    <p class="hint">确定性文本统计在浏览器内完成（不联网、不调模型），然后按项目规范生成 7 字段 Evidence 并计算 SHA-256。</p>
+    <label>executor 标签
+      <input id="executor" value="agentledger-wallet-panel" autocomplete="off">
+    </label>
+    <div class="row">
+      <button id="btn-run">运行确定性工具</button>
+      <button id="btn-anchor" class="ghost">提交证据（submitEvidence）</button>
+    </div>
+    <pre id="tool-output" class="out">（工具输出）</pre>
+    <pre id="evidence-json" class="out">（Evidence JSON）</pre>
+    <dl class="kv">
+      <dt>evidenceHash</dt><dd id="evidence-hash" class="mono">—</dd>
+    </dl>
+  </section>
+
+  <section class="card">
+    <h2>5 · 读回与状态</h2>
+    <div class="row"><button id="btn-refresh">刷新链上状态</button></div>
+    <pre id="task-view" class="out">（链上任务）</pre>
+    <pre id="phase0-view" class="out">（对外状态）</pre>
+  </section>
+
+  <section class="card">
+    <h2>6 · 可选：独立核对 USDC 收款</h2>
+    <p class="hint">填入一笔真实的 Monad 测试网 USDC 转账，本页只读地核对 <code>Transfer</code> 与 EIP-3009 <code>AuthorizationUsed</code>，并算出 settlementRef 与链上比对。<strong>不做这一步，对外状态永远是 PaymentUnknown。</strong></p>
+    <label>USDC 交易哈希
+      <input id="usdc-tx" class="mono" placeholder="0x…" autocomplete="off" spellcheck="false">
+    </label>
+    <label>payer（留空用当前账户）
+      <input id="usdc-payer" class="mono" placeholder="0x…" autocomplete="off" spellcheck="false">
+    </label>
+    <label>收款地址 payTo
+      <input id="usdc-payto" class="mono" placeholder="0x…" autocomplete="off" spellcheck="false">
+    </label>
+    <label>金额（原子单位）
+      <input id="usdc-amount" value="1000" inputmode="numeric" autocomplete="off">
+    </label>
+    <label>EIP-3009 nonce（可选，但推荐）
+      <input id="usdc-nonce" class="mono" placeholder="0x…" autocomplete="off" spellcheck="false">
+    </label>
+    <div class="row"><button id="btn-usdc">核对这笔收款</button></div>
+    <pre id="usdc-result" class="out">（核对结果）</pre>
+  </section>
+
+  <section class="card">
+    <h2>日志</h2>
+    <div id="log" class="log"></div>
+  </section>
+</main>
+
+<script type="module" src="./app.js"></script>
+</body>
+</html>

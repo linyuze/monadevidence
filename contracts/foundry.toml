@@ -1,0 +1,25 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+solc_version = "0.8.27"
+optimizer = true
+optimizer_runs = 200
+fs_permissions = [{ access = "read", path = "." }]
+
+# ---------------------------------------------------------------------------
+# Monad networks
+# Monad is a fully EVM-compatible Layer-1, so standard Solidity tooling works
+# unchanged. These are the network definitions used by `forge` / `cast`.
+# ---------------------------------------------------------------------------
+[rpc_endpoints]
+monad_testnet = "https://testnet-rpc.monad.xyz"
+# If the official RPC is rate-limited, swap in a public alternative:
+# monad_testnet = "https://monad-testnet.drpc.org"
+
+[etherscan]
+# Used by `forge verify-contract` against the Monad explorer API.
+monad_testnet = { key = "${MONAD_EXPLORER_API_KEY}", url = "https://testnet.monadexplorer.com/api" }
+
+[fmt]
+line_length = 100

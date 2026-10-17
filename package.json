@@ -1,0 +1,15 @@
+{
+  "name": "monad-dev-starter",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Minimal Monad (EVM-compatible L1) development starter. Smart contracts build/deploy with Foundry; off-chain dApp layer uses viem/wagmi.",
+  "scripts": {
+    "deploy:forge": "forge script script/Deploy.s.sol:Deploy --rpc-url $MONAD_RPC_URL --broadcast",
+    "verify": "forge verify-contract"
+  },
+  "dependencies": {
+    "viem": "^2.0.0",
+    "wagmi": "^2.0.0"
+  }
+}

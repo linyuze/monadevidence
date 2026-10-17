@@ -52,6 +52,15 @@ const short = (value, head = 10, tail = 8) =>
 
 function setText(id, value) { const node = $(id); if (node) node.textContent = value; }
 
+// Inline result line under the card-0 buttons. The log at the bottom of the page
+// is too far away to be the only feedback for a button.
+function setState(message, kind = "info") {
+  const node = $("precheck-state");
+  if (!node) return;
+  node.textContent = message;
+  node.className = "state-line " + kind;
+}
+
 function bigintReplacer(_key, value) { return typeof value === "bigint" ? value.toString() : value; }
 
 // ------------------------------------------------------------- transport
@@ -79,7 +88,17 @@ const transport = {
       return await provider.request({ method, params });
     } catch (error) {
       // EIP-1193: 4001 = user rejected, -32000..-32099 = node-level failure
-      const message = error?.message || String(error);
+      let message = error?.message || String(error);
+      // MetaMask collapses node errors into "Internal JSON-RPC error." — keep the
+      // underlying reason so the log is actionable.
+      const inner = typeof error?.data === "string"
+        ? error.data
+        : (error?.data?.message || error?.data?.originalError?.message || "");
+      if (inner && !message.includes(inner)) message += ` — ${inner}`;
+      if (error?.code !== undefined && error.code !== -32603) message += ` [code ${error.code}]`;
+      if (/max fee per gas less than block base fee/i.test(message)) {
+        message += "。MetaMask 的高级 gas 设置里有个低于 100 gwei 的 maxFeePerGas，请把它重置为「市场」或提高";
+      }
       const wrapped = new Error(message);
       wrapped.code = error?.code;
       wrapped.data = error?.data;
@@ -110,8 +129,10 @@ async function connect() {
     $("btn-run").disabled = false;
     await refreshBalances();
     log(`已连接 ${short(state.account)}，链 ${state.chainId}`, "ok");
+    setState(`已连接 ${state.account}（链 ${state.chainId}）`, "ok");
   } catch (error) {
     log(`连接失败：${error.message}`, "error");
+    setState(`连接失败：${error.message}`, "err");
   }
 }
 
@@ -172,7 +193,16 @@ async function deploy() {
     const artifact = await loadArtifact();
     const data = deployData(artifact.bytecode, state.account);
     log("请在 MetaMask 中确认部署交易…");
-    const hash = await transport.request("eth_sendTransaction", [{ from: state.account, data }]);
+    // Same reasoning as pipeline.mjs: pin gas + legacy gasPrice so a stale
+    // EIP-1559 maxFeePerGas cannot make the node reject the deployment.
+    const tx = { from: state.account, data };
+    try {
+      tx.gas = await transport.request("eth_estimateGas", [{ from: state.account, data }]);
+      tx.gasPrice = await transport.request("eth_gasPrice", []);
+    } catch (estimateError) {
+      log(`gas 估算失败，交给钱包自己算：${estimateError.message}`, "info");
+    }
+    const hash = await transport.request("eth_sendTransaction", [tx]);
     log(`部署已提交：${hash}`);
     const receipt = await waitReceipt(hash);
     if (receipt.status !== "0x1") throw new Error("部署交易 revert");
@@ -438,9 +468,18 @@ async function precheck() {
 
     log(`链 ID：${chainId}${chainId === MONAD.chainId ? "（Monad Testnet ✓）" : "（不是 Monad Testnet ✗）"}`, chainId === MONAD.chainId ? "ok" : "error");
     if (!payer) {
-      log("MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」", "error");
-      return;
+      // Reading a balance needs an address, and the address needs authorization.
+      // So ask for it here rather than bouncing the user to another button.
+      setState("钱包还没授权本页。正在请求连接（只会请求授权，不会让你签交易）…", "warn");
+      await connect();
+      const granted = await transport.request("eth_accounts", []);
+      if (!granted || !granted.length) {
+        setState("仍未授权。点上方「连接 MetaMask（账户 A）」，在弹窗里选账户并确认。", "err");
+        return;
+      }
+      return precheck();
     }
+    setState("自检中…", "warn");
     state.account = payer;
     state.chainId = chainId;
     setText("mm-state", payer);
@@ -475,8 +514,16 @@ async function precheck() {
     }
     const need = 10n ** 18n;
     log(payerBalance >= need ? "余额够跑一次 1 MON 转账" : "余额不足 1 MON，先去 faucet.monad.xyz 领取", payerBalance >= need ? "ok" : "error");
+
+    const parts = [`链 ${chainId} ✓`, `A ${formatMon(payerBalance)} MON`];
+    if (/^0x[0-9a-fA-F]{40}$/.test(payee)) parts.push(`B ${formatMon(await readBalance(payee))} MON`);
+    setState(
+      `自检完成：${parts.join(" · ")}` + (payerBalance >= need ? "" : " —— 余额不足 1 MON，先领测试币"),
+      payerBalance >= need ? "ok" : "err",
+    );
   } catch (error) {
     log(`自检失败：${error.message}`, "error");
+    setState(`自检失败：${error.message}`, "err");
   }
 }
 

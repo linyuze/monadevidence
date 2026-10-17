@@ -114,6 +114,26 @@ export async function runMonPayment(options, hooks = {}) {
     }
   };
 
+  // Always send an explicit gas limit and legacy gas price.
+  //
+  // Why: MetaMask can carry a stale EIP-1559 maxFeePerGas (e.g. 13 gwei saved
+  // from an Ethereum mainnet session). Monad's base fee is 100 gwei, so the node
+  // rejects the transaction with -32000 "max fee per gas less than block base
+  // fee", and MetaMask shows that as "Internal JSON-RPC error." with no detail.
+  // Specifying gasPrice forces a legacy transaction, which has no maxFeePerGas.
+  //
+  // Monad charges gas_limit rather than gas_used, so the estimate is used as-is
+  // instead of being padded by 20%.
+  const sendTx = async ({ from, to, data, value }) => {
+    const call = { from, to, data };
+    if (value !== undefined) call.value = toHexQuantity(value);
+    const [gasHex, priceHex] = await Promise.all([
+      transport.request("eth_estimateGas", [call]),
+      transport.request("eth_gasPrice", []),
+    ]);
+    return transport.request("eth_sendTransaction", [{ ...call, gas: gasHex, gasPrice: priceHex }]);
+  };
+
   const amount = typeof valueAtomic === "bigint" ? valueAtomic : BigInt(valueAtomic);
   const payer = lower(from);
   const payee = lower(to);
@@ -184,7 +204,7 @@ export async function runMonPayment(options, hooks = {}) {
       return { detail: `task already exists in state ${existing.status}; not recreated`, skipped: true, existing };
     }
     const data = createTaskData(taskId, descriptionHash, maxBudgetAtomic ?? null);
-    const hash = await transport.request("eth_sendTransaction", [{ from: payer, to: contract, data }]);
+    const hash = await sendTx({ from: payer, to: contract, data });
     const { receipt } = await waitForReceipt(transport, hash, { timeoutMs, intervalMs });
     if (receipt.status !== "0x1") throw new Error(`createTask reverted in ${hash}`);
     return { detail: `created in ${hash}`, hash, descriptionHash };
@@ -192,11 +212,7 @@ export async function runMonPayment(options, hooks = {}) {
 
   // ----------------------------------------------------------------- transfer
   const transfer = await guard("transfer", "eth_sendTransaction { from: A, to: B, value }", async () => {
-    const hash = await transport.request("eth_sendTransaction", [{
-      from: payer,
-      to: payee,
-      value: toHexQuantity(amount),
-    }]);
+    const hash = await sendTx({ from: payer, to: payee, value: amount });
     return { detail: `${formatMon(amount)} MON → ${payee} (${hash})`, hash };
   });
 
@@ -274,7 +290,7 @@ export async function runMonPayment(options, hooks = {}) {
   // ----------------------------------------------------------- recordPayment
   const recorded = await guard("recordPayment", "eth_sendTransaction recordPayment", async () => {
     const data = recordPaymentData(taskId, payer, amount, evidence.settlementRef);
-    const hash = await transport.request("eth_sendTransaction", [{ from: payer, to: contract, data }]);
+    const hash = await sendTx({ from: payer, to: contract, data });
     const { receipt } = await waitForReceipt(transport, hash, { timeoutMs, intervalMs });
     if (receipt.status !== "0x1") throw new Error(`recordPayment reverted in ${hash}`);
     return { detail: `payment recorded in ${hash}`, hash };
@@ -283,7 +299,7 @@ export async function runMonPayment(options, hooks = {}) {
   // ---------------------------------------------------------- submitEvidence
   const anchored = await guard("submitEvidence", "eth_sendTransaction submitEvidence", async () => {
     const data = submitEvidenceData(taskId, evidence.hash);
-    const hash = await transport.request("eth_sendTransaction", [{ from: payer, to: contract, data }]);
+    const hash = await sendTx({ from: payer, to: contract, data });
     const { receipt } = await waitForReceipt(transport, hash, { timeoutMs, intervalMs });
     if (receipt.status !== "0x1") throw new Error(`submitEvidence reverted in ${hash}`);
     return { detail: `evidence anchored in ${hash}`, hash };

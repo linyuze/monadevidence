@@ -18,8 +18,9 @@
     <div class="row">
       <button id="btn-connect">连接 MetaMask（账户 A）</button>
       <button id="btn-switch" class="ghost">添加 / 切换 Monad 测试网</button>
-      <button id="btn-precheck" class="ghost">只读自检（不签名）</button>
+      <button id="btn-precheck" class="ghost">自检并读取余额</button>
     </div>
+    <p id="precheck-state" class="state-line">尚未自检。点上面的按钮：未连接时会先请求钱包授权，但不会让你签任何交易。</p>
     <dl class="kv">
       <dt>钱包</dt><dd id="mm-state">未连接</dd>
       <dt>网络</dt><dd id="net-state">—</dd>

@@ -176,6 +176,20 @@ pre.code {
 
 .muted { color: var(--muted); font-size: 12.5px; }
 
+.state-line {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: #fbfcfd;
+  font-size: 13px;
+  color: var(--muted);
+  word-break: break-all;
+}
+.state-line.ok { border-color: #b9e3c8; background: #f1faf4; color: var(--ok); }
+.state-line.err { border-color: #f2c2c4; background: #fdf3f3; color: var(--bad); }
+.state-line.warn { border-color: #efd9ac; background: #fdf8ee; color: var(--warn); }
+
 @media (max-width: 620px) {
   .grid2 { grid-template-columns: 1fr; }
   .kv { grid-template-columns: 1fr; }

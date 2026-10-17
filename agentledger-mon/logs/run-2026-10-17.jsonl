@@ -1,1 +1,82 @@
 {"at":"2026-10-17T08:38:43.720Z","source":"selftest","kind":"log","level":"info","message":"diagnostics channel check"}
+{"at":"2026-10-17T09:02:50.922Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"info","message":"页面就绪。先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:05:52.552Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"info","message":"页面就绪。先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:05.735Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:05.735Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:09.500Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:09.500Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:12.031Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:12.031Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:13.211Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:13.212Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:13.444Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:13.444Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:21.686Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:21.686Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:21.889Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:21.889Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:22.102Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:22.102Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:22.352Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:22.352Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:22.526Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:22.527Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:22.687Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:22.687Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:22.859Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:22.859Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:23.463Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:23.463Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:23.647Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:23.647Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:23.836Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:23.836Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:24.019Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:24.019Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:41.219Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:41.219Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:41.515Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:41.515Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:41.956Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:41.957Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:42.135Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:42.135Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:42.308Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:42.309Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:42.480Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:42.480Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:06:42.690Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:06:42.690Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"error","message":"MetaMask 还没有把账户交给本页：先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:09:33.195Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"info","message":"页面就绪。先点「连接 MetaMask（账户 A）」"}
+{"at":"2026-10-17T09:09:36.474Z","source":"panel","account":null,"chainId":null,"kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:09:41.779Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"ok","message":"已连接 0xa2e7a693…9603300d，链 0x279f"}
+{"at":"2026-10-17T09:09:41.790Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:09:41.792Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"ok","message":"账户 A 0xa2e7a6935329ffafb3a6f6cacc9002999603300d：100 MON"}
+{"at":"2026-10-17T09:09:41.796Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"info","message":"还没填合约地址：第一次跑需要先点「部署新合约」"}
+{"at":"2026-10-17T09:09:41.797Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"ok","message":"账户 B 0xD7237D15B7abdf44d091350665e6a87f853cf4D6：0 MON"}
+{"at":"2026-10-17T09:09:41.799Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"ok","message":"余额够跑一次 1 MON 转账"}
+{"at":"2026-10-17T09:11:44.772Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"info","message":"请在 MetaMask 中确认部署交易…"}
+{"at":"2026-10-17T09:12:26.525Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"error","message":"执行中断：合约地址格式不对"}
+{"at":"2026-10-17T09:12:29.872Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"error","message":"执行中断：合约地址格式不对"}
+{"at":"2026-10-17T09:13:16.576Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"info","message":"部署已提交：0x5e2262bbe0af931097a55c725542d8ddf636b47bf86bc95efe6c21dc2f4c0d08"}
+{"at":"2026-10-17T09:13:20.682Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"ok","message":"合约已部署：0x13a6f3633b7ac413d6151c0501e62096767be1c8（recorder = 账户 A）"}
+{"at":"2026-10-17T09:15:48.576Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"info","message":"开始：1 MON  0xa2e7a693…9603300d → 0xD7237D15…853cf4D6"}
+{"at":"2026-10-17T09:15:48.578Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"step","step":"preflight","status":"running","detail":"","rpc":"eth_chainId / eth_getCode / eth_getBalance / eth_call"}
+{"at":"2026-10-17T09:15:50.793Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"step","step":"preflight","status":"ok","detail":"chainId 0x279f · A=99.940016452 MON · B=0 MON · gas 102000000000 wei","rpc":"eth_chainId / eth_getCode / eth_getBalance / eth_call"}
+{"at":"2026-10-17T09:15:50.793Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"step","step":"createTask","status":"running","detail":"","rpc":"eth_call getTask → eth_sendTransaction createTask"}
+{"at":"2026-10-17T09:15:51.201Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"step","step":"createTask","status":"fail","detail":"Internal JSON-RPC error.","rpc":"eth_call getTask → eth_sendTransaction createTask"}
+{"at":"2026-10-17T09:15:51.201Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"error","message":"创建任务（写入预算上限） 失败：Internal JSON-RPC error."}
+{"at":"2026-10-17T09:15:51.204Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"error","message":"执行中断：[createTask] Internal JSON-RPC error."}
+{"at":"2026-10-17T09:16:03.970Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"error","message":"读回失败：Internal JSON-RPC error."}
+{"at":"2026-10-17T09:16:07.196Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"ok","message":"链 ID：0x279f（Monad Testnet ✓）"}
+{"at":"2026-10-17T09:16:07.200Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"ok","message":"账户 A 0xa2e7a6935329ffafb3a6f6cacc9002999603300d：99.940016452 MON"}
+{"at":"2026-10-17T09:16:07.629Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"ok","message":"账户 B 0xD7237D15B7abdf44d091350665e6a87f853cf4D6：0 MON"}
+{"at":"2026-10-17T09:16:07.634Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"ok","message":"合约 recorder = 0xa2e7a6935329ffafb3a6f6cacc9002999603300d（就是账户 A ✓）"}
+{"at":"2026-10-17T09:16:07.637Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"ok","message":"余额够跑一次 1 MON 转账"}
+{"at":"2026-10-17T09:16:14.331Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"info","message":"开始：1 MON  0xa2e7a693…9603300d → 0xD7237D15…853cf4D6"}
+{"at":"2026-10-17T09:16:14.332Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"step","step":"preflight","status":"running","detail":"","rpc":"eth_chainId / eth_getCode / eth_getBalance / eth_call"}
+{"at":"2026-10-17T09:16:16.700Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"step","step":"preflight","status":"ok","detail":"chainId 0x279f · A=99.940016452 MON · B=0 MON · gas 102000000000 wei","rpc":"eth_chainId / eth_getCode / eth_getBalance / eth_call"}
+{"at":"2026-10-17T09:16:16.700Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"step","step":"createTask","status":"running","detail":"","rpc":"eth_call getTask → eth_sendTransaction createTask"}
+{"at":"2026-10-17T09:16:17.090Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"step","step":"createTask","status":"fail","detail":"Internal JSON-RPC error.","rpc":"eth_call getTask → eth_sendTransaction createTask"}
+{"at":"2026-10-17T09:16:17.090Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"error","message":"创建任务（写入预算上限） 失败：Internal JSON-RPC error."}
+{"at":"2026-10-17T09:16:17.092Z","source":"panel","account":"0xa2e7a6935329ffafb3a6f6cacc9002999603300d","chainId":"0x279f","kind":"log","level":"error","message":"执行中断：[createTask] Internal JSON-RPC error."}

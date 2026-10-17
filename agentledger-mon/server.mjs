@@ -207,6 +207,16 @@ const server = createServer(async (req, res) => {
   }
 });
 
+server.on("error", error => {
+  if (error && error.code === "EADDRINUSE") {
+    console.error(`端口 ${PORT} 已被占用。`);
+    console.error(`如果面板已经在运行，直接打开 http://localhost:${PORT}/ 即可。`);
+    console.error("要换端口： PORT=8789 node server.mjs");
+    process.exit(1);
+  }
+  throw error;
+});
+
 server.listen(PORT, HOST, () => {
   console.log("AgentLedger · MON payment panel");
   console.log("  root : " + ROOT);

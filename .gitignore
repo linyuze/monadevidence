@@ -1,6 +1,10 @@
-node_modules/
+*.out
+*.pid
+.DS_Store
 .env
-out/
-monskills/
-lib/
 contracts/cache/
+lib/
+logs/
+monskills/
+node_modules/
+out/

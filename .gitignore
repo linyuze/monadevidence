@@ -2,6 +2,8 @@
 *.pid
 .DS_Store
 .env
+agentledger-mon/evidence/
+agentledger-mon/logs/
 contracts/cache/
 lib/
 logs/

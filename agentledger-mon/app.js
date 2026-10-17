@@ -412,7 +412,7 @@ async function saveEvidence(result) {
     const response = await fetch("/api/evidence", {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(bundleOf(result)),
+      body: JSON.stringify(bundleOf(result), bigintReplacer),
     });
     const payload = await response.json();
     if (!response.ok) throw new Error(payload.error || `HTTP ${response.status}`);
